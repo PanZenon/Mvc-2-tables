@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebMVC_DB2_sp.Models.Animal>
+    @{
+    ViewData["Title"] = "CreateType";
+    }
+
+    <h1>Create New Type</h1>
+
+
+    <form asp-action="CreateType">
+        <div>
+            NrCage:
+            <input type="Number" id="NrCage" Name="NrCage">
+            <label id="NrCageInfo"></label>
+        </div>
+        <div>
+            Food:
+            <input id="Food" type="Text" Name="Food">
+            <label id="FoodInfo"></label>
+        </div>
+        <div>
+            Img(name):
+            <input id="Img" type="text" Name="Img">
+            <label id="ImgInfo"></label>
+        </div>
+        <input type="submit" value="CreateType" class="option" id="Submit" />
+    </form>
+
+    <div>
+        <a asp-action="Index">Back</a>
+    </div>
+
+    <script src="~/js/validateType.js"></script>

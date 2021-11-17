@@ -1,0 +1,42 @@
+﻿@model WebMVC_DB2_sp.Models.Informations
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@foreach (var animal in Model.animals)
+{
+    <h1>Editing elem with id @animal.Id</h1>
+
+    <form asp-action="Edit">
+        <div>
+            Name:
+            <input type="text" id="Name" Name="Name" value="@animal.Name">
+            <label id="NameInfo"></label>
+        </div>
+        <div>
+            Weight(kg):
+            <input type="number" id="Weight" Name="Weight" value="@animal.Weight">
+            <label id="WeightInfo"></label>
+        </div>
+        <div>
+            <select id="TypeId" name="TypeId">
+                <option disabled value="">Id-Food-NrCage</option>
+                @foreach (var type in Model.types)
+                {
+                    if (type.TypeId == animal.TypeId)
+                    {
+                        <option selected value="@type.TypeId">@type.TypeId-@type.Food-@type.NrCage</option>
+                    }
+                    else
+                    {
+                        <option value="@type.TypeId">@type.TypeId-@type.Food-@type.NrCage</option>
+                    }
+                }
+            </select>
+        </div>
+        <input type="submit" value="Edit" class="option" id="Submit" />
+        <a class="option" asp-action="index">Back</a>
+    </form>
+}
+<script src="~/js/validate.js"></script>

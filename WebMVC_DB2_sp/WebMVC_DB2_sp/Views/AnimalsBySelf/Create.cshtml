@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<WebMVC_DB2_sp.Models.Type>
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Animal</h1>
+
+
+<form asp-action="Create">
+    <div>
+        Name:
+        <input type="text" id="Name" Name="Name">
+        <label id="NameInfo"></label>
+    </div>
+    <div>
+        Weight(kg):
+        <input id="Weight" type="number" Name="Weight">
+        <label id="WeightInfo"></label>
+    </div>
+    <div>
+        <select id="TypeId" name="TypeId">
+            <option disabled value="">Id-Food-NrCage</option>
+            @if (Model == null)
+            {
+                <div>An error unespected occured</div>
+            }
+            else
+            {
+                @foreach (var type in Model)
+                {
+                    <option value="@type.TypeId">@type.TypeId-@type.Food-@type.NrCage</option>
+                }
+            }
+
+        </select>
+    </div>
+    <input type="submit" value="Create" class="option" id="Submit" />
+</form>
+
+<div>
+    <a asp-action="Index">Back</a>
+</div>
+
+<script src="~/js/validate.js" asp-append-version="true"></script>

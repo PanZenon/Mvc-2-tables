@@ -1,0 +1,48 @@
+﻿@model WebMVC_DB2_sp.Models.Informations
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>AnimalsBySelf</h1>
+
+<a class="option" asp-action="Create">Create new Animal</a>
+<a class="option" asp-action="CreateType">Create new Type</a>
+
+<div class="animal bg-dark text-light">
+    <div class="TypeId">TypeId</div>
+    <div class="Id">Lp.</div>
+    <div class="Name">Name</div>
+    <div class="Weight">Weight(kg)</div>
+    <div class="Delete">Delete</div>
+    <div class="Delete">Edit</div>
+</div>
+
+@foreach (var type in Model.types)
+{
+<div class="animal type text-light">
+    <div class="TypeId">@type.TypeId</div>
+    <div class="TypeFood">@type.Food</div>
+    <div class="TypeNrCage">@type.NrCage</div>
+    <div class="Img"><img class="TypeImg" src="~/img/@type.Img"> </div>
+    <div class="Delete"><a asp-action="DeleteType" asp-route-id="@type.TypeId"><i class="fas fa-times text-danger"></i></a></div>
+    <div class="@type.TypeId Display"><i class="fas fa-arrow-down"></i></div>
+</div>
+    @foreach (var animal in Model.animals)
+    {
+        @if (animal.TypeId == type.TypeId)
+        {
+            <div class="animal animal.@type.TypeId bg-dark text-light hidden ">
+                <div class="TypeId">@animal.TypeId</div>
+                <div class="Id">@animal.Id</div>
+                <div class="Name">@animal.Name</div>
+                <div class="Weight">@animal.Weight kg</div>
+                <div class="Delete"><a asp-action="Delete" asp-route-id="@animal.Id"><i class="fas fa-times text-danger"></i></a></div>
+                <div class="Edit"><a asp-action="Edit" asp-route-id="@animal.Id"><i class="fas fa-edit"></i></a></div>
+            </div>
+        }
+    }
+}
+
+<script src="~/js/site.js" asp-append-version="true"></script>

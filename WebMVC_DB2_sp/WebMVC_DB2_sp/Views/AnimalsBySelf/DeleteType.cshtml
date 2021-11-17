@@ -1,0 +1,11 @@
+﻿@model WebMVC_DB2_sp.Models.Type
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h3>Are you sure you want to delete this elem with id @Html.DisplayFor(model => model.TypeId)?</h3>
+
+<form asp-action="DeleteType">
+    <a class="option" asp-action="index">Back</a>
+    <input class="option" type="submit" value="Delete">
+</form>
